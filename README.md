@@ -16,7 +16,7 @@ Phone Number:
 Email:
 LinkedIn/GitHub:
 
-Career Summary (2-3 lines):
+Career Summary (2-3 lines): 
 
 Education:
 - Degree:
