@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="dark">
+<style>
+
+:root {
+  --color-brand-primary: #232425;
+  --color-brand-secondary: #0F7FFF;
+  --color-bg-page: #FFFFFF;
+  --color-bg-surface: #FAFAFA;
+  --color-bg-subtle: #F5F5F5;
+  --color-text-primary: #232425;
+  --color-text-secondary: #606366;
+  --color-text-tertiary: #909499;
+  --color-text-disabled: #C4C7CC;
+  --color-text-link: #0F7FFF;
+  --color-text-on-brand: #FFFFFF;
+  --color-success: #10B981;
+  --color-warning: #F59E0B;
+  --color-error: #EF4444;
+  --color-info: #3B82F6;
+  --color-border-default: #EAEAEA;
+  --color-border-strong: #D0D3D8;
+  --color-border-subtle: #F2F2F2;
+  --color-border-brand: #0F7FFF;
+  --color-border-error: #EF4444;
+  --color-border-success: #10B981;
+  --space-4: 4px; --space-8: 8px; --space-12: 12px; --space-16: 16px;
+  --space-20: 20px; --space-24: 24px; --space-32: 32px; --space-48: 48px;
+  --text-h1: 36px; --text-h2: 28px; --text-h3: 22px; --text-h4: 18px;
+  --text-body: 16px; --text-small: 14px; --text-caption: 12px;
+  --radius-4: 4px; --radius-8: 8px; --radius-12: 12px;
+  --border-width-1: 1px; --border-width-2: 2px;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 6px rgba(0,0,0,0.07);
+  --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+
+  /* Categorical color ramps (mirror of design-tokens.css) */
+  --color-cat-blue-50:#EBF3FE;--color-cat-blue-100:#C5DDFC;--color-cat-blue-200:#92BEF8;--color-cat-blue-400:#0F7FFF;--color-cat-blue-600:#0561C5;--color-cat-blue-800:#053F7C;--color-cat-blue-900:#06294F;
+  --color-cat-green-50:#E5F8F1;--color-cat-green-100:#B7EFD8;--color-cat-green-200:#7DE0BA;--color-cat-green-400:#10B981;--color-cat-green-600:#088762;--color-cat-green-800:#045A41;--color-cat-green-900:#023A29;
+  --color-cat-amber-50:#FEF3D9;--color-cat-amber-100:#FCE0A0;--color-cat-amber-200:#FAC865;--color-cat-amber-400:#F59E0B;--color-cat-amber-600:#B16E03;--color-cat-amber-800:#6E4500;--color-cat-amber-900:#422900;
+  --color-cat-red-50:#FDE9E9;--color-cat-red-100:#F9C2C2;--color-cat-red-200:#F49595;--color-cat-red-400:#EF4444;--color-cat-red-600:#C41B1B;--color-cat-red-800:#821212;--color-cat-red-900:#520B0B;
+  --color-cat-purple-50:#F0EAFE;--color-cat-purple-100:#D5C2FB;--color-cat-purple-200:#B59AF8;--color-cat-purple-400:#8B5CF6;--color-cat-purple-600:#6431D2;--color-cat-purple-800:#441E8E;--color-cat-purple-900:#2A1259;
+  --color-cat-teal-50:#DEF7F4;--color-cat-teal-100:#A6EBE2;--color-cat-teal-200:#6BDCCD;--color-cat-teal-400:#14B8A6;--color-cat-teal-600:#0D8779;--color-cat-teal-800:#075A50;--color-cat-teal-900:#043934;
+  --color-cat-coral-50:#FEE7EB;--color-cat-coral-100:#FCC0CA;--color-cat-coral-200:#FA98A8;--color-cat-coral-400:#FB7185;--color-cat-coral-600:#D14258;--color-cat-coral-800:#8C2336;--color-cat-coral-900:#5A111F;
+  --color-cat-pink-50:#FCE4F1;--color-cat-pink-100:#F7BAD9;--color-cat-pink-200:#F18BBE;--color-cat-pink-400:#EC4899;--color-cat-pink-600:#B81F75;--color-cat-pink-800:#7B0F4D;--color-cat-pink-900:#4D0530;
+  --color-cat-gray-50:#F3F4F6;--color-cat-gray-100:#E5E7EB;--color-cat-gray-200:#CBD0D7;--color-cat-gray-400:#6B7280;--color-cat-gray-600:#4A4F58;--color-cat-gray-800:#2A2D33;--color-cat-gray-900:#16181B;
+}
+.c-blue   { fill: var(--color-cat-blue-50);   stroke: var(--color-cat-blue-600);   color: var(--color-cat-blue-800);   background-color: var(--color-cat-blue-50);   border-color: var(--color-cat-blue-600); }
+.c-green  { fill: var(--color-cat-green-50);  stroke: var(--color-cat-green-600);  color: var(--color-cat-green-800);  background-color: var(--color-cat-green-50);  border-color: var(--color-cat-green-600); }
+.c-amber  { fill: var(--color-cat-amber-50);  stroke: var(--color-cat-amber-600);  color: var(--color-cat-amber-800);  background-color: var(--color-cat-amber-50);  border-color: var(--color-cat-amber-600); }
+.c-red    { fill: var(--color-cat-red-50);    stroke: var(--color-cat-red-600);    color: var(--color-cat-red-800);    background-color: var(--color-cat-red-50);    border-color: var(--color-cat-red-600); }
+.c-purple { fill: var(--color-cat-purple-50); stroke: var(--color-cat-purple-600); color: var(--color-cat-purple-800); background-color: var(--color-cat-purple-50); border-color: var(--color-cat-purple-600); }
+.c-teal   { fill: var(--color-cat-teal-50);   stroke: var(--color-cat-teal-600);   color: var(--color-cat-teal-800);   background-color: var(--color-cat-teal-50);   border-color: var(--color-cat-teal-600); }
+.c-coral  { fill: var(--color-cat-coral-50);  stroke: var(--color-cat-coral-600);  color: var(--color-cat-coral-800);  background-color: var(--color-cat-coral-50);  border-color: var(--color-cat-coral-600); }
+.c-pink   { fill: var(--color-cat-pink-50);   stroke: var(--color-cat-pink-600);   color: var(--color-cat-pink-800);   background-color: var(--color-cat-pink-50);   border-color: var(--color-cat-pink-600); }
+.c-gray   { fill: var(--color-cat-gray-50);   stroke: var(--color-cat-gray-600);   color: var(--color-cat-gray-800);   background-color: var(--color-cat-gray-50);   border-color: var(--color-cat-gray-600); }
+.c-blue text, .c-green text, .c-amber text, .c-red text,
+.c-purple text, .c-teal text, .c-coral text, .c-pink text, .c-gray text { fill: currentColor; stroke: none; }
+@media (prefers-color-scheme: dark) {
+  :root {
+  --color-brand-primary: #E8E9EA;
+  --color-brand-secondary: #4a9eff;
+  --color-bg-page: #1A1B1C;
+  --color-bg-surface: #232425;
+  --color-bg-subtle: #2A2B2C;
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: #B8BBBF;
+  --color-text-tertiary: #868B92;
+  --color-text-disabled: #4A4C4F;
+  --color-text-link: #8bb8ff;
+  --color-text-on-brand: #1A1B1C;
+  --color-border-default: #3A3B3C;
+  --color-border-strong: #4A4C4F;
+  --color-border-subtle: #2E2F30;
+  --color-border-brand: #4a9eff;
+  --color-border-error: #f87171;
+  --color-border-success: #34d399;
+  }
+  .c-blue { fill: var(--color-cat-blue-800); stroke: var(--color-cat-blue-200); color: var(--color-cat-blue-100); background-color: var(--color-cat-blue-800); border-color: var(--color-cat-blue-200); }
+  .c-green { fill: var(--color-cat-green-800); stroke: var(--color-cat-green-200); color: var(--color-cat-green-100); background-color: var(--color-cat-green-800); border-color: var(--color-cat-green-200); }
+  .c-amber { fill: var(--color-cat-amber-800); stroke: var(--color-cat-amber-200); color: var(--color-cat-amber-100); background-color: var(--color-cat-amber-800); border-color: var(--color-cat-amber-200); }
+  .c-red { fill: var(--color-cat-red-800); stroke: var(--color-cat-red-200); color: var(--color-cat-red-100); background-color: var(--color-cat-red-800); border-color: var(--color-cat-red-200); }
+  .c-purple { fill: var(--color-cat-purple-800); stroke: var(--color-cat-purple-200); color: var(--color-cat-purple-100); background-color: var(--color-cat-purple-800); border-color: var(--color-cat-purple-200); }
+  .c-teal { fill: var(--color-cat-teal-800); stroke: var(--color-cat-teal-200); color: var(--color-cat-teal-100); background-color: var(--color-cat-teal-800); border-color: var(--color-cat-teal-200); }
+  .c-coral { fill: var(--color-cat-coral-800); stroke: var(--color-cat-coral-200); color: var(--color-cat-coral-100); background-color: var(--color-cat-coral-800); border-color: var(--color-cat-coral-200); }
+  .c-pink { fill: var(--color-cat-pink-800); stroke: var(--color-cat-pink-200); color: var(--color-cat-pink-100); background-color: var(--color-cat-pink-800); border-color: var(--color-cat-pink-200); }
+  .c-gray { fill: var(--color-cat-gray-800); stroke: var(--color-cat-gray-200); color: var(--color-cat-gray-100); background-color: var(--color-cat-gray-800); border-color: var(--color-cat-gray-200); }
+}
+html[data-theme="dark"] {
+  --color-brand-primary: #E8E9EA;
+  --color-brand-secondary: #4a9eff;
+  --color-bg-page: #1A1B1C;
+  --color-bg-surface: #232425;
+  --color-bg-subtle: #2A2B2C;
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: #B8BBBF;
+  --color-text-tertiary: #868B92;
+  --color-text-disabled: #4A4C4F;
+  --color-text-link: #8bb8ff;
+  --color-text-on-brand: #1A1B1C;
+  --color-border-default: #3A3B3C;
+  --color-border-strong: #4A4C4F;
+  --color-border-subtle: #2E2F30;
+  --color-border-brand: #4a9eff;
+  --color-border-error: #f87171;
+  --color-border-success: #34d399;
+}
+html[data-theme="dark"] .c-blue { fill: var(--color-cat-blue-800); stroke: var(--color-cat-blue-200); color: var(--color-cat-blue-100); background-color: var(--color-cat-blue-800); border-color: var(--color-cat-blue-200); }
+html[data-theme="dark"] .c-green { fill: var(--color-cat-green-800); stroke: var(--color-cat-green-200); color: var(--color-cat-green-100); background-color: var(--color-cat-green-800); border-color: var(--color-cat-green-200); }
+html[data-theme="dark"] .c-amber { fill: var(--color-cat-amber-800); stroke: var(--color-cat-amber-200); color: var(--color-cat-amber-100); background-color: var(--color-cat-amber-800); border-color: var(--color-cat-amber-200); }
+html[data-theme="dark"] .c-red { fill: var(--color-cat-red-800); stroke: var(--color-cat-red-200); color: var(--color-cat-red-100); background-color: var(--color-cat-red-800); border-color: var(--color-cat-red-200); }
+html[data-theme="dark"] .c-purple { fill: var(--color-cat-purple-800); stroke: var(--color-cat-purple-200); color: var(--color-cat-purple-100); background-color: var(--color-cat-purple-800); border-color: var(--color-cat-purple-200); }
+html[data-theme="dark"] .c-teal { fill: var(--color-cat-teal-800); stroke: var(--color-cat-teal-200); color: var(--color-cat-teal-100); background-color: var(--color-cat-teal-800); border-color: var(--color-cat-teal-200); }
+html[data-theme="dark"] .c-coral { fill: var(--color-cat-coral-800); stroke: var(--color-cat-coral-200); color: var(--color-cat-coral-100); background-color: var(--color-cat-coral-800); border-color: var(--color-cat-coral-200); }
+html[data-theme="dark"] .c-pink { fill: var(--color-cat-pink-800); stroke: var(--color-cat-pink-200); color: var(--color-cat-pink-100); background-color: var(--color-cat-pink-800); border-color: var(--color-cat-pink-200); }
+html[data-theme="dark"] .c-gray { fill: var(--color-cat-gray-800); stroke: var(--color-cat-gray-200); color: var(--color-cat-gray-100); background-color: var(--color-cat-gray-800); border-color: var(--color-cat-gray-200); }
+:root { color-scheme: dark; }
+html, body { margin: 0; padding: 0; background: transparent !important; box-sizing: border-box;
+             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Inter', 'Helvetica Neue', Arial, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans SC', 'Noto Sans JP', 'Noto Sans KR', system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji'; }
+*, *::before, *::after { box-sizing: inherit; }
+svg, svg text, svg tspan { font-family: inherit; }
+</style>
+<script>
+function sendPrompt(text) {
+  window.parent.postMessage(
+    { type: 'genspark_visualize_send_prompt', text: String(text) }, '*'
+  );
+}
+function _reportHeight() {
+  var h = Math.max(
+    document.body ? document.body.scrollHeight : 0,
+    document.documentElement ? document.documentElement.scrollHeight : 0,
+    100
+  );
+  window.parent.postMessage({ type: 'genspark_visualize_height', height: h }, '*');
+}
+window.addEventListener('load', function() {
+  _reportHeight();
+  if (window.ResizeObserver) {
+    new ResizeObserver(_reportHeight).observe(document.body);
+  }
+});
+window.addEventListener('resize', _reportHeight);
+
+// ── PNG export (rasterize the rendered widget inside the iframe) ─────────────
+// Runs here because sandbox="allow-scripts" (no allow-same-origin) makes the
+// iframe DOM unreachable from the parent. Clone <body>, swap each <canvas>
+// (Chart.js) for a snapshot <img>, inline the document styles with dark-scheme
+// rules stripped for a deterministic light export, wrap in <svg><foreignObject>,
+// and rasterize via a data: URL (a Blob URL would taint the canvas in Chromium).
+function _gsExportFont() { return "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Inter', 'Helvetica Neue', Arial, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans SC', 'Noto Sans JP', 'Noto Sans KR', system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji'"; }
+function _gsCollectStyles() {
+  var out = '';
+  var s = document.querySelectorAll('style');
+  for (var i = 0; i < s.length; i++) { out += (s[i].textContent || '') + '\n'; }
+  return out;
+}
+function _gsStripDarkMedia(css) {
+  var marker = '@media (prefers-color-scheme: dark)';
+  var idx = css.indexOf(marker);
+  while (idx !== -1) {
+    var brace = css.indexOf('{', idx);
+    if (brace === -1) { css = css.slice(0, idx); break; }
+    var depth = 1, j = brace + 1;
+    while (j < css.length && depth > 0) {
+      var ch = css.charAt(j);
+      if (ch === '{') depth++; else if (ch === '}') depth--;
+      j++;
+    }
+    css = css.slice(0, idx) + css.slice(j);
+    idx = css.indexOf(marker);
+  }
+  return css;
+}
+function _gsCleanup(node) {
+  var scripts = node.querySelectorAll('script');
+  for (var i = 0; i < scripts.length; i++) {
+    if (scripts[i].parentNode) scripts[i].parentNode.removeChild(scripts[i]);
+  }
+  var nameRe = /^[A-Za-z_:][A-Za-z0-9_:.-]*$/;
+  var els = node.querySelectorAll('*');
+  for (var k = 0; k < els.length; k++) {
+    var attrs = els[k].attributes;
+    for (var a = attrs.length - 1; a >= 0; a--) {
+      if (!nameRe.test(attrs[a].name)) els[k].removeAttribute(attrs[a].name);
+    }
+  }
+}
+function _gsSubstituteCanvases(live, clone) {
+  var lc = live.querySelectorAll('canvas');
+  var cc = clone.querySelectorAll('canvas');
+  for (var i = 0; i < lc.length && i < cc.length; i++) {
+    var data = lc[i].toDataURL('image/png');
+    var img = document.createElement('img');
+    img.setAttribute('src', data);
+    img.setAttribute('style', (cc[i].getAttribute('style') || '') +
+      ';width:' + lc[i].offsetWidth + 'px;height:' + lc[i].offsetHeight + 'px');
+    if (cc[i].parentNode) cc[i].parentNode.replaceChild(img, cc[i]);
+  }
+}
+function _gsPostPng(id, dataUrl, error) {
+  window.parent.postMessage(
+    { type: 'genspark_visualize_png', id: id, dataUrl: dataUrl || null, error: error || null },
+    '*'
+  );
+}
+function _gsRasterize(id, scale) {
+  try {
+    scale = scale || 2;
+    var PAD = 16;  // breathing room so content never sits flush against the edge
+    var W = Math.max(document.documentElement.scrollWidth, document.body.scrollWidth, 1);
+    var H = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight, 1);
+    var bodyClone = document.body.cloneNode(true);
+    _gsSubstituteCanvases(document.body, bodyClone);
+    _gsCleanup(bodyClone);
+    var wrapper = document.createElement('div');
+    wrapper.setAttribute('style',
+      'font-family:' + _gsExportFont() + ';box-sizing:border-box;width:' + W + 'px');
+    while (bodyClone.firstChild) { wrapper.appendChild(bodyClone.firstChild); }
+    var inner = new XMLSerializer().serializeToString(wrapper);
+    var styleTag = '<style>' + _gsStripDarkMedia(_gsCollectStyles()) +
+      ' svg, svg text, svg tspan { font-family:' + _gsExportFont() + '; }</style>';
+    var CW = W + PAD * 2, CH = H + PAD * 2;
+    var SW = Math.round(CW * scale), SH = Math.round(CH * scale);
+    var svg = '<svg xmlns="http://www.w3.org/2000/svg" width="' + SW +
+      '" height="' + SH + '" viewBox="0 0 ' + CW + ' ' + CH + '">' +
+      '<foreignObject x="' + PAD + '" y="' + PAD + '" width="' + W + '" height="' + H + '">' +
+      '<div xmlns="http://www.w3.org/1999/xhtml">' + styleTag + inner + '</div>' +
+      '</foreignObject></svg>';
+    var img = new Image();
+    img.onload = function() {
+      try {
+        var cv = document.createElement('canvas');
+        cv.width = SW; cv.height = SH;
+        var ctx = cv.getContext('2d');
+        ctx.fillStyle = '#FFFFFF';
+        ctx.fillRect(0, 0, SW, SH);
+        ctx.drawImage(img, 0, 0);
+        _gsPostPng(id, cv.toDataURL('image/png'), null);
+      } catch (e) { _gsPostPng(id, null, 'tainted'); }
+    };
+    img.onerror = function() { _gsPostPng(id, null, 'image_error'); };
+    img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+  } catch (e) {
+    _gsPostPng(id, null,
+      (e && e.name === 'SecurityError') ? 'tainted' : String((e && e.message) || e));
+  }
+}
+window.addEventListener('message', function(ev) {
+  var d = ev.data || {};
+  if (!d || d.type !== 'genspark_visualize_request_png') return;
+  var run = function() { _gsRasterize(d.id, d.scale); };
+  if (document.fonts && document.fonts.ready && document.fonts.ready.then) {
+    document.fonts.ready.then(function() {
+      if (window.requestAnimationFrame) window.requestAnimationFrame(run);
+      else window.setTimeout(run, 0);
+    });
+  } else if (window.requestAnimationFrame) {
+    window.requestAnimationFrame(run);
+  } else {
+    window.setTimeout(run, 0);
+  }
+});
+</script>
+</head>
+<body><div class="resume-wrap">
+  <div class="resume-page" role="document" aria-label="Shri­nivas A Masalavad Resume">
+    <header class="header">
+      <div class="name">SHRINIVAS A MASALAVAD</div>
+      <div class="contact-line">
+        <a href="mailto:Shrinivasmasalavad1@gmail.com">Shrinivasmasalavad1@gmail.com</a>
+        <span>|</span>
+        <span>+91 9886361791</span>
+        <span>|</span>
+        <a href="https://www.linkedin.com/in/shrinivas-a-m-2a82b33b7" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <span>|</span>
+        <a href="https://github.com/shrinivasmasalavada" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </div>
+    </header>
+
+    <section>
+      <h2>PROFILE SUMMARY</h2>
+      <p>
+        AI, Embedded Systems, and Computer Vision enthusiast with hands-on experience across <strong>8+ AI and embedded engineering projects</strong> in precision agriculture, IoT, automation, and intelligent surveillance systems. Research Intern at <strong>IIT Dharwad</strong> and trainee at <strong>NITK Surathkal</strong> with practical exposure to <strong>Python, C/C++, OpenCV, YOLO, Raspberry Pi, ESP32, LoRa, wireless communication, and edge computing</strong>. Participated in <strong>5+ national- and state-level innovation programs</strong>, including New Delhi exhibitions, and built a project appreciated by the <strong>Department of Science and Technology (DST), Government of India</strong>. Interested in roles spanning <strong>AI/ML, Embedded Systems, Computer Vision, Edge AI, Robotics, IoT, and Wireless Networking</strong>.
+      </p>
+    </section>
+
+    <section>
+      <h2>EXPERIENCE</h2>
+      <div class="entry">
+        <div class="entry-head"><span><strong>Research Intern</strong> <em>| Indian Institute of Technology Dharwad (IITDH)</em></span><span>Apr 2026 - Present | Dharwad, Karnataka</span></div>
+        <ul>
+          <li>Contributed to an active research project focused on <strong>embedded systems, wireless communication, and distributed edge computing</strong>.</li>
+          <li>Designed and deployed a secure image transmission system between <strong>2 Raspberry Pi devices</strong> operating across different networks.</li>
+          <li>Developed a <strong>Python-based</strong> transfer pipeline for reliable, secure, and low-latency communication between distributed edge devices.</li>
+          <li>Configured remote connectivity protocols and completed <strong>50+ validation and debugging sessions</strong> to improve communication reliability.</li>
+        </ul>
+      </div>
+      <div class="entry">
+        <div class="entry-head"><span><strong>AI &amp; Embedded Systems Trainee</strong> <em>| National Institute of Technology Karnataka (NITK), Surathkal</em></span><span>2023 | Mangalore, Karnataka</span></div>
+        <ul>
+          <li>Completed hands-on training on an <strong>AI-powered Intelligent Weed Recognition and Laser-Based Eradication System</strong> for precision agriculture.</li>
+          <li>Contributed to computer vision and embedded workflows integrating <strong>Python, OpenCV, ESP32, and embedded AI</strong> for real-time weed detection.</li>
+          <li>Built foundational experience with <strong>ROS 2, Gazebo, and SolidWorks</strong> for robotic simulation, system architecture, and virtual testing.</li>
+          <li>Strengthened practical knowledge in <strong>Computer Vision, Robotics, Embedded Systems, and Precision Agriculture</strong> through guided technical training.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2>PROJECTS</h2>
+      <div class="project"><strong>Intelligent Weed Recognition and Laser-Based Eradication System</strong>
+        <ul>
+          <li>Developed an AI-powered weed recognition system trained and evaluated on <strong>1000+ annotated agricultural images</strong>.</li>
+          <li>Built an <strong>ESP32-based</strong> embedded control system integrating camera and actuator hardware for real-time detection and response.</li>
+          <li>Implemented an end-to-end computer vision pipeline in <strong>Python and OpenCV</strong>, validated through <strong>50+ prototype experiments</strong>.</li>
+        </ul>
+      </div>
+      <div class="project"><strong>Smart Laser-Based Elephant Intrusion Detection System</strong> <em>- KSSC / DST, Government of Karnataka</em>
+        <ul>
+          <li>Designed a laser-based virtual perimeter system for early elephant intrusion detection in plantations and farmland.</li>
+          <li>Integrated <strong>ESP32, Laser/IR Sensors, LoRa, GSM, and Wi-Fi</strong> for real-time detection and alert transmission.</li>
+          <li>Built an alert pipeline delivering <strong>SMS and mobile notifications</strong> and presented the project at a <strong>Karnataka State-Level Science Project Exhibition</strong>.</li>
+        </ul>
+      </div>
+      <div class="project"><strong>Smart Solar-Powered Bird Repellent System for Crop Protection</strong>
+        <ul>
+          <li>Built a solar-powered autonomous repellent system using embedded automation for agricultural crop protection.</li>
+          <li>Designed an energy system with a <strong>6000 mAh rechargeable battery</strong> and solar panel for continuous low-sunlight operation.</li>
+          <li>Implemented scheduled automation from <strong>5:00 AM-6:00 PM</strong> and rotating sounds every <strong>30 minutes</strong> to improve effectiveness.</li>
+        </ul>
+      </div>
+      <div class="project"><strong>Pick &amp; Place Robotic Arm</strong> <em>| 2024</em>
+        <ul>
+          <li>Designed a <strong>4-joint</strong> robotic arm in Fusion360 and 3D-printed components to <strong>sub-0.5 mm tolerance</strong>.</li>
+          <li>Programmed inverse kinematics and servo sequences for repeatable object manipulation across a <strong>180° workspace</strong>.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2>TECHNICAL SKILLS</h2>
+      <div class="skills"><strong>Programming Languages:</strong> Python, C, C++, SQL</div>
+      <div class="skills"><strong>AI &amp; Computer Vision:</strong> Machine Learning, Deep Learning, Computer Vision, OpenCV, YOLO, Image Processing, Edge AI</div>
+      <div class="skills"><strong>Embedded Systems &amp; IoT:</strong> ESP32, Raspberry Pi, Arduino, Embedded C, IoT, Sensor Integration, GPIO, UART, I2C, SPI</div>
+      <div class="skills"><strong>Robotics &amp; Simulation:</strong> ROS 2, Gazebo, SolidWorks, Robotics Fundamentals</div>
+      <div class="skills"><strong>Networking &amp; Edge Computing:</strong> TCP/IP, SSH, Remote Connectivity, Wireless Communication, LoRa, Edge Computing</div>
+      <div class="skills"><strong>Tools &amp; Frameworks:</strong> Git, GitHub, Linux, VS Code, Jupyter Notebook</div>
+      <div class="skills"><strong>Databases:</strong> Firebase, MySQL (Basic)</div>
+    </section>
+
+    <section>
+      <h2>EDUCATION</h2>
+      <div class="edu-row"><span><strong>Master of Computer Applications (MCA)</strong> | Bengaluru | Pursuing</span><span>Expected 2028</span></div>
+      <div class="edu-row"><span><strong>Bachelor of Computer Applications (BCA)</strong> | Karnataka University of Dharwad</span><span>Graduated 2026 | CGPA: 8.3/10</span></div>
+    </section>
+
+    <section>
+      <h2>CERTIFICATIONS &amp; ACHIEVEMENTS</h2>
+      <ul>
+        <li><strong>Machine Learning Specialization</strong> - Coursera (<strong>DeepLearning.AI &amp; Stanford University</strong>): Supervised Learning, Advanced Learning Algorithms, Unsupervised Learning, Recommender Systems, and Reinforcement Learning.</li>
+        <li>Selected for <strong>1 National-Level</strong>, <strong>2 State-Level</strong>, and <strong>4 District-Level</strong> innovation and science exhibitions.</li>
+        <li>Presented projects alongside international delegations, including participants from <strong>Germany</strong>, fostering technical knowledge exchange.</li>
+        <li>Collaborated with an international student from <strong>Nigeria</strong> during technical discussions on engineering innovation.</li>
+        <li>Innovation project appreciated by the <strong>Department of Science and Technology (DST), Government of India</strong> for real-world impact.</li>
+      </ul>
+    </section>
+  </div>
+</div>
+
+<style>
+  .resume-wrap {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: var(--space-8) 0;
+    color: var(--color-text-primary);
+  }
+  .resume-page {
+    width: 100%;
+    max-width: 758px;
+    background: var(--color-bg-surface);
+    border: 1px solid var(--color-border-default);
+    box-shadow: var(--shadow-sm);
+    padding: 28px 34px 26px;
+    line-height: 1.18;
+  }
+  .header {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  .name {
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: 0.6px;
+    margin-bottom: 4px;
+  }
+  .contact-line {
+    font-size: 11.5px;
+    color: var(--color-text-secondary);
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .contact-line a {
+    color: inherit;
+    text-decoration: underline;
+  }
+  section { margin-top: 8px; }
+  h2 {
+    font-size: 13px;
+    font-weight: 800;
+    margin: 0 0 5px 0;
+    padding-bottom: 3px;
+    border-bottom: 1px solid var(--color-text-primary);
+    letter-spacing: 0.3px;
+  }
+  p {
+    margin: 0;
+    font-size: 12.1px;
+    text-align: left;
+  }
+  .entry, .project { margin-bottom: 5px; }
+  .entry-head, .edu-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    align-items: baseline;
+    font-size: 12.1px;
+    margin-bottom: 2px;
+  }
+  .entry-head em, .project em { color: var(--color-text-secondary); }
+  ul {
+    margin: 2px 0 0 18px;
+    padding: 0;
+    font-size: 11.9px;
+  }
+  li { margin: 1px 0; }
+  .skills {
+    font-size: 12px;
+    margin: 1px 0;
+  }
+  strong { font-weight: 800; }
+  @media (max-width: 720px) {
+    .resume-page { padding: 20px 18px; }
+    .entry-head, .edu-row {
+      display: block;
+    }
+  }
+</style>
+
+<script>
+  if (typeof _reportHeight === 'function') _reportHeight();
+</script></body>
+</html>
